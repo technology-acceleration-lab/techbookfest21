@@ -27,6 +27,8 @@ const def = {
     // 目次
     { rel: "contents" },
 
+    "02-mcp-tool-errors.md",
+
     // 第一部
     //"part-1-start.md",			//
     //"chap-gr-thisisstart.md", 
@@ -80,5 +82,7 @@ if (isPrint) {
     "./theme-nice-techbook2/theme-base/css/lib/prism/theme-okaidia.css",
   ];
 }
+
+def.theme.push("./src/mcp-errors.css");
 
 export default def;

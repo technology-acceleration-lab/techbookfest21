@@ -1,0 +1,45 @@
+/* Chapter-local monochrome styles; shared book theme remains authoritative. */
+.mcp-errors {
+  color: #000;
+  --vs-theme--anchor-color-body: #000;
+  --vs-theme--inline-code-color-bg: #eee;
+  --vs-theme--inline-code-color-body: #000;
+  --vs-prism--background: #f4f4f4;
+  --vs-prism--color: #000;
+}
+
+.mcp-errors a,
+.mcp-errors code,
+.mcp-errors .token {
+  color: #000;
+  text-shadow: none;
+}
+
+.mcp-errors pre {
+  break-inside: avoid;
+  border: 0.5pt solid #888;
+  padding: 0.65em;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.mcp-errors table {
+  width: 100%;
+}
+
+.mcp-errors th {
+  white-space: normal;
+}
+
+.mcp-errors td,
+.mcp-errors th {
+  padding: 0.35em 0.45em;
+}
+
+.mcp-errors tr {
+  break-inside: avoid;
+}
+
+.mcp-errors a {
+  overflow-wrap: anywhere;
+}

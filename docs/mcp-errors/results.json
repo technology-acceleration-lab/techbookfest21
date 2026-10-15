@@ -1,0 +1,1031 @@
+{
+  "verified_date_jst": "2026-10-15",
+  "protocol_revision": "2026-07-28",
+  "environment": {
+    "python": "3.14.6",
+    "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+    "mcp": "2.3.0",
+    "mcp-types": "2.3.0",
+    "pydantic": "2.14.1",
+    "anyio": "4.15.1",
+    "httpx": "0.28.1",
+    "pytest": "8.4.2"
+  },
+  "scope": {
+    "stdio": "real subprocess and JSON-RPC lines",
+    "http": "httpx.MockTransport; no real network",
+    "sleep": "recorded intent only; no actual waiting",
+    "llm": "not used"
+  },
+  "in_memory": {
+    "tool_error_isError": true,
+    "tool_body_calls": 1,
+    "protocol_exception": {
+      "type": "MCPError",
+      "code": -32602,
+      "message": "Lab protocol rejection"
+    }
+  },
+  "wire": [
+    {
+      "case": "unknown_method",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "no/such_method",
+        "params": {
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "error-lab",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "error": {
+          "code": -32601,
+          "message": "Method not found",
+          "data": "no/such_method"
+        }
+      }
+    },
+    {
+      "case": "missing_tool_name",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "tools/call",
+        "params": {
+          "arguments": {},
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "error-lab",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "error": {
+          "code": -32602,
+          "message": "Invalid request parameters",
+          "data": ""
+        }
+      }
+    },
+    {
+      "case": "arguments_not_object",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "method": "tools/call",
+        "params": {
+          "name": "typed",
+          "arguments": [],
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "error-lab",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "error": {
+          "code": -32602,
+          "message": "Invalid request parameters",
+          "data": ""
+        }
+      }
+    },
+    {
+      "case": "unknown_tool",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "method": "tools/call",
+        "params": {
+          "name": "no_such_tool",
+          "arguments": {},
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "error-lab",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "result": {
+          "content": [
+            {
+              "text": "Unknown tool: no_such_tool",
+              "type": "text"
+            }
+          ],
+          "isError": true,
+          "resultType": "complete",
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Local error lab",
+              "version": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "missing_argument",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "method": "tools/call",
+        "params": {
+          "name": "typed",
+          "arguments": {},
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "error-lab",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "result": {
+          "content": [
+            {
+              "text": "Error executing tool typed: 1 validation error for typedArguments\nrecord_id\n  Field required [type=missing, input_value={}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.14/v/missing",
+              "type": "text"
+            }
+          ],
+          "isError": true,
+          "resultType": "complete",
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Local error lab",
+              "version": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "wrong_type",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "method": "tools/call",
+        "params": {
+          "name": "typed",
+          "arguments": {
+            "record_id": "abc"
+          },
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "error-lab",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "result": {
+          "content": [
+            {
+              "text": "Error executing tool typed: 1 validation error for typedArguments\nrecord_id\n  Input should be a valid integer [type=int_type, input_value='abc', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/int_type",
+              "type": "text"
+            }
+          ],
+          "isError": true,
+          "resultType": "complete",
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Local error lab",
+              "version": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "out_of_range",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "method": "tools/call",
+        "params": {
+          "name": "typed",
+          "arguments": {
+            "record_id": 0
+          },
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "error-lab",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "result": {
+          "content": [
+            {
+              "text": "Error executing tool typed: 1 validation error for typedArguments\nrecord_id\n  Input should be greater than or equal to 1 [type=greater_than_equal, input_value=0, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/greater_than_equal",
+              "type": "text"
+            }
+          ],
+          "isError": true,
+          "resultType": "complete",
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Local error lab",
+              "version": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "numeric_string",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "method": "tools/call",
+        "params": {
+          "name": "typed",
+          "arguments": {
+            "record_id": "1"
+          },
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "error-lab",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "result": {
+          "content": [
+            {
+              "text": "Error executing tool typed: 1 validation error for typedArguments\nrecord_id\n  Input should be a valid integer [type=int_type, input_value='1', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/int_type",
+              "type": "text"
+            }
+          ],
+          "isError": true,
+          "resultType": "complete",
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Local error lab",
+              "version": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "success",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "method": "tools/call",
+        "params": {
+          "name": "typed",
+          "arguments": {
+            "record_id": 1
+          },
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "error-lab",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "result": {
+          "content": [
+            {
+              "text": "record:1",
+              "type": "text"
+            }
+          ],
+          "isError": false,
+          "resultType": "complete",
+          "structuredContent": {
+            "result": "record:1"
+          },
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Local error lab",
+              "version": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "returned_string",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "method": "tools/call",
+        "params": {
+          "name": "returned_error",
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "error-lab",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "result": {
+          "content": [
+            {
+              "text": "Error: record not found",
+              "type": "text"
+            }
+          ],
+          "isError": false,
+          "resultType": "complete",
+          "structuredContent": {
+            "result": "Error: record not found"
+          },
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Local error lab",
+              "version": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "returned_dict",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "method": "tools/call",
+        "params": {
+          "name": "returned_dict",
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "error-lab",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "result": {
+          "content": [
+            {
+              "text": "{\n  \"error\": \"record not found\"\n}",
+              "type": "text"
+            }
+          ],
+          "isError": false,
+          "resultType": "complete",
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Local error lab",
+              "version": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "tool_error",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 12,
+        "method": "tools/call",
+        "params": {
+          "name": "expected_error",
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "error-lab",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 12,
+        "result": {
+          "content": [
+            {
+              "text": "Error executing tool expected_error: NOT_FOUND: IDを確認して変更してください。",
+              "type": "text"
+            }
+          ],
+          "isError": true,
+          "resultType": "complete",
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Local error lab",
+              "version": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "explicit_is_error",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 13,
+        "method": "tools/call",
+        "params": {
+          "name": "explicit_error",
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "error-lab",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 13,
+        "result": {
+          "content": [
+            {
+              "text": "NOT_FOUND",
+              "type": "text"
+            }
+          ],
+          "isError": true,
+          "resultType": "complete",
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Local error lab",
+              "version": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "mcp_error",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 14,
+        "method": "tools/call",
+        "params": {
+          "name": "protocol_error",
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "error-lab",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 14,
+        "error": {
+          "code": -32602,
+          "message": "Lab protocol rejection"
+        }
+      }
+    },
+    {
+      "case": "unexpected_exception",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 15,
+        "method": "tools/call",
+        "params": {
+          "name": "crash",
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "error-lab",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 15,
+        "result": {
+          "content": [
+            {
+              "text": "Error executing tool crash",
+              "type": "text"
+            }
+          ],
+          "isError": true,
+          "resultType": "complete",
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Local error lab",
+              "version": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "unsafe_tool_error",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 16,
+        "method": "tools/call",
+        "params": {
+          "name": "unsafe_tool_error",
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "error-lab",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 16,
+        "result": {
+          "content": [
+            {
+              "text": "Error executing tool unsafe_tool_error: password=DUMMY_SECRET_DO_NOT_USE",
+              "type": "text"
+            }
+          ],
+          "isError": true,
+          "resultType": "complete",
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Local error lab",
+              "version": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "unsafe_protocol_error",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 17,
+        "method": "tools/call",
+        "params": {
+          "name": "unsafe_protocol_error",
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "error-lab",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 17,
+        "error": {
+          "code": -32602,
+          "message": "unsafe",
+          "data": {
+            "password": "DUMMY_SECRET_DO_NOT_USE"
+          }
+        }
+      }
+    },
+    {
+      "case": "validation_echo",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 18,
+        "method": "tools/call",
+        "params": {
+          "name": "typed",
+          "arguments": {
+            "record_id": "DUMMY_SECRET_DO_NOT_USE"
+          },
+          "_meta": {
+            "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+            "io.modelcontextprotocol/clientInfo": {
+              "name": "error-lab",
+              "version": "0.1.0"
+            },
+            "io.modelcontextprotocol/clientCapabilities": {}
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 18,
+        "result": {
+          "content": [
+            {
+              "text": "Error executing tool typed: 1 validation error for typedArguments\nrecord_id\n  Input should be a valid integer [type=int_type, input_value='DUMMY_SECRET_DO_NOT_USE', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/int_type",
+              "type": "text"
+            }
+          ],
+          "isError": true,
+          "resultType": "complete",
+          "_meta": {
+            "io.modelcontextprotocol/serverInfo": {
+              "name": "Local error lab",
+              "version": ""
+            }
+          }
+        }
+      }
+    }
+  ],
+  "upstream": [
+    {
+      "case": "http_200",
+      "simulated_upstream": [
+        200
+      ],
+      "retry_after_header": null,
+      "http_calls": 1,
+      "requested_sleeps_seconds": [],
+      "result": {
+        "_meta": {
+          "io.modelcontextprotocol/serverInfo": {
+            "name": "MCP error sample",
+            "version": ""
+          }
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"id\": 1, \"name\": \"Alice\"}"
+          }
+        ],
+        "structuredContent": {
+          "id": 1,
+          "name": "Alice"
+        },
+        "isError": false,
+        "resultType": "complete"
+      }
+    },
+    {
+      "case": "http_404",
+      "simulated_upstream": [
+        404
+      ],
+      "retry_after_header": null,
+      "http_calls": 1,
+      "requested_sleeps_seconds": [],
+      "result": {
+        "_meta": {
+          "io.modelcontextprotocol/serverInfo": {
+            "name": "MCP error sample",
+            "version": ""
+          }
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\": {\"code\": \"NOT_FOUND\", \"message\": \"対象がありません。\", \"next_action\": \"change_record_id\"}}"
+          }
+        ],
+        "structuredContent": {
+          "error": {
+            "code": "NOT_FOUND",
+            "message": "対象がありません。",
+            "next_action": "change_record_id"
+          }
+        },
+        "isError": true,
+        "resultType": "complete"
+      }
+    },
+    {
+      "case": "http_401",
+      "simulated_upstream": [
+        401
+      ],
+      "retry_after_header": null,
+      "http_calls": 1,
+      "requested_sleeps_seconds": [],
+      "result": {
+        "_meta": {
+          "io.modelcontextprotocol/serverInfo": {
+            "name": "MCP error sample",
+            "version": ""
+          }
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\": {\"code\": \"ACCESS_DENIED\", \"message\": \"取得権限を確認してください。\", \"next_action\": \"ask_operator\"}}"
+          }
+        ],
+        "structuredContent": {
+          "error": {
+            "code": "ACCESS_DENIED",
+            "message": "取得権限を確認してください。",
+            "next_action": "ask_operator"
+          }
+        },
+        "isError": true,
+        "resultType": "complete"
+      }
+    },
+    {
+      "case": "http_403",
+      "simulated_upstream": [
+        403
+      ],
+      "retry_after_header": null,
+      "http_calls": 1,
+      "requested_sleeps_seconds": [],
+      "result": {
+        "_meta": {
+          "io.modelcontextprotocol/serverInfo": {
+            "name": "MCP error sample",
+            "version": ""
+          }
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\": {\"code\": \"ACCESS_DENIED\", \"message\": \"取得権限を確認してください。\", \"next_action\": \"ask_operator\"}}"
+          }
+        ],
+        "structuredContent": {
+          "error": {
+            "code": "ACCESS_DENIED",
+            "message": "取得権限を確認してください。",
+            "next_action": "ask_operator"
+          }
+        },
+        "isError": true,
+        "resultType": "complete"
+      }
+    },
+    {
+      "case": "http_429_recovery",
+      "simulated_upstream": [
+        429,
+        200
+      ],
+      "retry_after_header": "1",
+      "http_calls": 2,
+      "requested_sleeps_seconds": [
+        1.0
+      ],
+      "result": {
+        "_meta": {
+          "io.modelcontextprotocol/serverInfo": {
+            "name": "MCP error sample",
+            "version": ""
+          }
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"id\": 1, \"name\": \"Alice\"}"
+          }
+        ],
+        "structuredContent": {
+          "id": 1,
+          "name": "Alice"
+        },
+        "isError": false,
+        "resultType": "complete"
+      }
+    },
+    {
+      "case": "http_500_recovery",
+      "simulated_upstream": [
+        500,
+        500,
+        200
+      ],
+      "retry_after_header": null,
+      "http_calls": 3,
+      "requested_sleeps_seconds": [
+        0.25,
+        0.5
+      ],
+      "result": {
+        "_meta": {
+          "io.modelcontextprotocol/serverInfo": {
+            "name": "MCP error sample",
+            "version": ""
+          }
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"id\": 1, \"name\": \"Alice\"}"
+          }
+        ],
+        "structuredContent": {
+          "id": 1,
+          "name": "Alice"
+        },
+        "isError": false,
+        "resultType": "complete"
+      }
+    },
+    {
+      "case": "http_503_exhausted",
+      "simulated_upstream": [
+        503
+      ],
+      "retry_after_header": null,
+      "http_calls": 3,
+      "requested_sleeps_seconds": [
+        0.25,
+        0.5
+      ],
+      "result": {
+        "_meta": {
+          "io.modelcontextprotocol/serverInfo": {
+            "name": "MCP error sample",
+            "version": ""
+          }
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\": {\"code\": \"RETRY_EXHAUSTED\", \"message\": \"再試行の上限に達しました。\", \"next_action\": \"stop\"}}"
+          }
+        ],
+        "structuredContent": {
+          "error": {
+            "code": "RETRY_EXHAUSTED",
+            "message": "再試行の上限に達しました。",
+            "next_action": "stop"
+          }
+        },
+        "isError": true,
+        "resultType": "complete"
+      }
+    },
+    {
+      "case": "http_429_long_wait",
+      "simulated_upstream": [
+        429,
+        200
+      ],
+      "retry_after_header": "20",
+      "http_calls": 1,
+      "requested_sleeps_seconds": [],
+      "result": {
+        "_meta": {
+          "io.modelcontextprotocol/serverInfo": {
+            "name": "MCP error sample",
+            "version": ""
+          }
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\": {\"code\": \"RETRY_LATER\", \"message\": \"待機後に再実行を検討してください。\", \"next_action\": \"defer_to_host\", \"retry_after_seconds\": 20.0}}"
+          }
+        ],
+        "structuredContent": {
+          "error": {
+            "code": "RETRY_LATER",
+            "message": "待機後に再実行を検討してください。",
+            "next_action": "defer_to_host",
+            "retry_after_seconds": 20.0
+          }
+        },
+        "isError": true,
+        "resultType": "complete"
+      }
+    },
+    {
+      "case": "timeout_exhausted",
+      "simulated_upstream": [
+        "timeout"
+      ],
+      "retry_after_header": null,
+      "http_calls": 3,
+      "requested_sleeps_seconds": [
+        0.25,
+        0.5
+      ],
+      "result": {
+        "_meta": {
+          "io.modelcontextprotocol/serverInfo": {
+            "name": "MCP error sample",
+            "version": ""
+          }
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\": {\"code\": \"RETRY_EXHAUSTED\", \"message\": \"再試行の上限に達しました。\", \"next_action\": \"stop\"}}"
+          }
+        ],
+        "structuredContent": {
+          "error": {
+            "code": "RETRY_EXHAUSTED",
+            "message": "再試行の上限に達しました。",
+            "next_action": "stop"
+          }
+        },
+        "isError": true,
+        "resultType": "complete"
+      }
+    },
+    {
+      "case": "invalid_response",
+      "simulated_upstream": [
+        "bad_json"
+      ],
+      "retry_after_header": null,
+      "http_calls": 1,
+      "requested_sleeps_seconds": [],
+      "result": {
+        "_meta": {
+          "io.modelcontextprotocol/serverInfo": {
+            "name": "MCP error sample",
+            "version": ""
+          }
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\": {\"code\": \"INVALID_UPSTREAM_RESPONSE\", \"message\": \"応答形式が不正です。\", \"next_action\": \"ask_operator\"}}"
+          }
+        ],
+        "structuredContent": {
+          "error": {
+            "code": "INVALID_UPSTREAM_RESPONSE",
+            "message": "応答形式が不正です。",
+            "next_action": "ask_operator"
+          }
+        },
+        "isError": true,
+        "resultType": "complete"
+      }
+    }
+  ]
+}

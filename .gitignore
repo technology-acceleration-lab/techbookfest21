@@ -5,3 +5,10 @@
 .vivliostyle
 /*.pdf
 node_modules
+.vivliostyle-mcp-errors
+
+# Python samples
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc

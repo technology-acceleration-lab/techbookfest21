@@ -10,6 +10,8 @@
     "build": "vivliostyle build -o screen.pdf",
     "build:print": "vivliostyle build -o print.pdf",
     "build:press-ready": "vivliostyle build -o print.pdf --press-ready --preflight-option gray-scale",
+    "build:mcp-errors": "vivliostyle build -c vivliostyle.mcp-errors.config.js -o mcp-errors.pdf",
+    "test:mcp-errors": "uv run --project examples/mcp-errors --frozen pytest examples/mcp-errors",
     "preview": "vivliostyle preview"
   },
   "dependencies": {

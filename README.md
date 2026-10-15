@@ -43,6 +43,22 @@ GitHub Actionsでは、push、Pull Request、手動実行のいずれでもPDF�
 pnpm run preview
 ```
 
+## MCP Toolエラー設計の記事と検証
+
+原稿は [src/02-mcp-tool-errors.md](src/02-mcp-tool-errors.md)、実験の根拠と未検証事項は [検証記録](docs/mcp-errors/verification.md)、実行手順は [サンプルREADME](examples/mcp-errors/README.md) を参照してください。
+
+章単独のモノクロPDFを生成します。原稿は合同誌のビルドと共有しています。
+
+```sh
+pnpm run build:mcp-errors
+```
+
+出力は `mcp-errors.pdf` です。サンプルのテストはPython 3.14系とuvを用意して実行します。
+
+```sh
+pnpm run test:mcp-errors
+```
+
 ## ライセンス
 
 - `src/*` は原稿ファイルと画像ファイルなので、オープンソースとしてのライセンスは付与しません。

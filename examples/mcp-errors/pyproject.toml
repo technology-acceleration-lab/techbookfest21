@@ -1,0 +1,13 @@
+[project]
+name = "techbookfest21-mcp-errors"
+version = "0.1.0"
+description = "Reproducible MCP tool error experiments for TechBookFest 21"
+requires-python = ">=3.14,<3.15"
+dependencies = ["mcp==2.3.0", "httpx==0.28.1"]
+
+[dependency-groups]
+dev = ["pytest==8.4.2"]
+
+[tool.pytest.ini_options]
+testpaths = ["."]
+addopts = "-q"

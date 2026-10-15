@@ -1,0 +1,57 @@
+{
+  "verified_date_jst": "2026-10-15",
+  "release_metadata_source": "https://pypi.org/pypi/{package}/json",
+  "releases": [
+    {
+      "package": "mcp",
+      "version": "2.3.0",
+      "requires_python": ">=3.10",
+      "files": [
+        {
+          "filename": "mcp-2.3.0-py3-none-any.whl",
+          "sha256": "dd0c44c089d16453e8ae31a3877a0054d7a2314caaa81f5e0541b9b1734b2377",
+          "upload_time": "2026-10-02T22:06:52.119073Z"
+        },
+        {
+          "filename": "mcp-2.3.0.tar.gz",
+          "sha256": "8b147a50441cf059dc88c684e0aeed3687f0aa0f39c6cde7b90330effd2b34d8",
+          "upload_time": "2026-10-02T22:06:56.091381Z"
+        }
+      ]
+    },
+    {
+      "package": "mcp-types",
+      "version": "2.3.0",
+      "requires_python": ">=3.10",
+      "files": [
+        {
+          "filename": "mcp_types-2.3.0-py3-none-any.whl",
+          "sha256": "968efdbdaedfab06adae40d378a34395f1090c5921d4be3c9cde283aaf76d91d",
+          "upload_time": "2026-10-02T22:06:54.099202Z"
+        },
+        {
+          "filename": "mcp_types-2.3.0.tar.gz",
+          "sha256": "d1e46549edb35ee19a94940fcee6d1addd7e589ab7ea92dda83f5d84781fc362",
+          "upload_time": "2026-10-02T22:06:57.863716Z"
+        }
+      ]
+    }
+  ],
+  "tagged_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/v2.3.0/src/mcp/server/mcpserver/tools/base.py",
+      "sha256": "df4074d47d76ff65cad4df903fa2543cb95ca1dd27f3501b9c2a4c0e55045a99",
+      "matches_installed": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/v2.3.0/src/mcp/server/mcpserver/tools/tool_manager.py",
+      "sha256": "a5e1017ff4a9cce3c93ad379d578e571c3187c9250a295750cb2e18717903838",
+      "matches_installed": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/v2.3.0/src/mcp/server/mcpserver/server.py",
+      "sha256": "fa61ae394dc4809c683f2878c3fc172da43c1387a3408835f89137ea34d57d4d",
+      "matches_installed": true
+    }
+  ]
+}
