@@ -18,9 +18,18 @@ class: author
 JAWS-UG 茨城運営 / JAWS-UG 配信部  
 </p>
 
-## 880
-
-## よしお
+<div class="author-profile">
+    <img src="images/hayao/icon.png">
+    <div>
+        <div>
+            <b>880(hayao) </b>
+            Twitter/GitHub: <a>@hayao099</a>
+        </div>
+    </div>
+</div>
+<p style="margin-top: 0.5em; margin-bottom: 2em;">
+技術サポートエンジニア．JVMがメイン．LLMもやる．
+</p>
 
 <div class="author-profile">
     <img src="images/yoshio/icon.png">

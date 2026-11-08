@@ -32,6 +32,8 @@ const def = {
 
     "./kushizam/01.md",
 
+    "./hayao/01.md",
+
   // 後書き
     "90-postscript.md",
     "98-authors.md",
